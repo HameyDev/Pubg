@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: hsl(210, 11%, 10%);
+    --foreground: hsl(210, 40%, 98%);
+    --card: hsl(210, 11%, 13%);
+    --card-foreground: hsl(210, 40%, 95%);
+    --popover: hsl(210, 11%, 13%);
+    --popover-foreground: hsl(210, 40%, 95%);
+    --primary: hsl(195, 100%, 50%);
+    --primary-foreground: hsl(210, 11%, 10%);
+    --secondary: hsl(84, 100%, 55%);
+    --secondary-foreground: hsl(210, 11%, 10%);
+    --muted: hsl(210, 11%, 20%);
+    --muted-foreground: hsl(210, 40%, 60%);
+    --accent: hsl(280, 100%, 60%);
+    --accent-foreground: hsl(210, 40%, 98%);
+    --destructive: hsl(0, 62%, 50%);
+    --destructive-foreground: hsl(210, 40%, 98%);
+    --border: hsl(210, 11%, 20%);
+    --input: hsl(210, 11%, 15%);
+    --ring: hsl(195, 100%, 50%);
+    --radius: 0.75rem;
+    --font-sans: "Inter", sans-serif;
+    --font-display: "Orbitron", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .gaming-gradient {
+    background: linear-gradient(135deg, hsl(195, 100%, 50%), hsl(280, 100%, 60%), hsl(84, 100%, 55%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .neon-text {
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+  }
+
+  .glow-border {
+    border: 1px solid transparent;
+    background: linear-gradient(hsl(210, 11%, 13%), hsl(210, 11%, 13%)) padding-box,
+                linear-gradient(135deg, hsl(195, 100%, 50%), hsl(280, 100%, 60%)) border-box;
+  }
+}
+
+@layer utilities {
+  @keyframes glow {
+    from { 
+      box-shadow: 0 0 5px hsl(195, 100%, 50%), 0 0 10px hsl(195, 100%, 50%), 0 0 15px hsl(195, 100%, 50%); 
+    }
+    to { 
+      box-shadow: 0 0 10px hsl(195, 100%, 50%), 0 0 20px hsl(195, 100%, 50%), 0 0 30px hsl(195, 100%, 50%); 
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { 
+      box-shadow: 0 0 5px hsl(84, 100%, 55%); 
+    }
+    50% { 
+      box-shadow: 0 0 20px hsl(84, 100%, 55%), 0 0 30px hsl(84, 100%, 55%); 
+    }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 1.5s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+}
