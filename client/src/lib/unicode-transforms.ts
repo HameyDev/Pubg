@@ -70,7 +70,7 @@ function addSymbolWrapper(text: string, wrapperType: string): string {
     musical: `♪${text}♪`,
     geometric: `◢${text}◤`,
   };
-  return wrappers[wrapperType] || text;
+  return wrappers[wrapperType as keyof typeof wrappers] || text;
 }
 
 export const unicodeTransforms: UnicodeTransform[] = [

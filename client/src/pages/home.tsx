@@ -4,6 +4,7 @@ import { PreMadeNames } from "@/components/premade-names";
 import { CopyToast } from "@/components/copy-toast";
 import { Button } from "@/components/ui/button";
 import { Gamepad2, Heart, History, Palette } from "lucide-react";
+import { Link } from "wouter";
 
 export default function Home() {
   const [copySuccess, setCopySuccess] = useState(false);
@@ -30,6 +31,7 @@ export default function Home() {
           <nav className="hidden md:flex items-center space-x-6">
             <a href="#generator" className="text-muted-foreground hover:text-primary transition-colors">Generator</a>
             <a href="#premade" className="text-muted-foreground hover:text-primary transition-colors">Pre-made Names</a>
+            <Link href="/blog" className="text-muted-foreground hover:text-primary transition-colors">Blog</Link>
             <a href="#favorites" className="text-muted-foreground hover:text-primary transition-colors">Favorites</a>
             <Button variant="ghost" size="sm" className="p-2 rounded-lg bg-muted hover:bg-primary/10 transition-colors">
               <Palette className="text-primary h-4 w-4" />

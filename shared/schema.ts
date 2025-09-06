@@ -69,3 +69,19 @@ export interface UnicodeTransform {
   displayName: string;
   transform: (text: string) => string;
 }
+
+export interface BlogPost {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  category: string;
+  tags: string[];
+  publishedAt: string;
+  readingTime: number;
+  author: {
+    name: string;
+    avatar: string;
+  };
+}
