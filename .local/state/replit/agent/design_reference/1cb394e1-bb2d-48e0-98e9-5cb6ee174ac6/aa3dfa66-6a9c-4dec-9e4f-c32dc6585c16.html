@@ -1,0 +1,855 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUBG Name Generator - Create Stylish Gaming Names</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                borderRadius: {
+                    lg: "var(--radius)",
+                    md: "calc(var(--radius) - 2px)",
+                    sm: "calc(var(--radius) - 4px)",
+                },
+                colors: {
+                    background: "var(--background)",
+                    foreground: "var(--foreground)",
+                    card: {
+                        DEFAULT: "var(--card)",
+                        foreground: "var(--card-foreground)",
+                    },
+                    primary: {
+                        DEFAULT: "var(--primary)",
+                        foreground: "var(--primary-foreground)",
+                    },
+                    secondary: {
+                        DEFAULT: "var(--secondary)",
+                        foreground: "var(--secondary-foreground)",
+                    },
+                    muted: {
+                        DEFAULT: "var(--muted)",
+                        foreground: "var(--muted-foreground)",
+                    },
+                    accent: {
+                        DEFAULT: "var(--accent)",
+                        foreground: "var(--accent-foreground)",
+                    },
+                    destructive: {
+                        DEFAULT: "var(--destructive)",
+                        foreground: "var(--destructive-foreground)",
+                    },
+                    border: "var(--border)",
+                    input: "var(--input)",
+                    ring: "var(--ring)",
+                },
+                fontFamily: {
+                    sans: ["Inter", "sans-serif"],
+                    display: ["Orbitron", "sans-serif"],
+                    mono: ["JetBrains Mono", "monospace"],
+                },
+                animation: {
+                    'glow': 'glow 2s ease-in-out infinite alternate',
+                    'pulse-glow': 'pulse-glow 1.5s ease-in-out infinite',
+                    'float': 'float 3s ease-in-out infinite',
+                }
+            },
+        },
+    };
+    </script>
+    <style>
+        :root {
+            --background: hsl(210 11% 10%);
+            --foreground: hsl(210 40% 98%);
+            --card: hsl(210 11% 13%);
+            --card-foreground: hsl(210 40% 95%);
+            --primary: hsl(195 100% 50%);
+            --primary-foreground: hsl(210 11% 10%);
+            --secondary: hsl(84 100% 55%);
+            --secondary-foreground: hsl(210 11% 10%);
+            --muted: hsl(210 11% 20%);
+            --muted-foreground: hsl(210 40% 60%);
+            --accent: hsl(280 100% 60%);
+            --accent-foreground: hsl(210 40% 98%);
+            --destructive: hsl(0 62% 50%);
+            --destructive-foreground: hsl(210 40% 98%);
+            --border: hsl(210 11% 20%);
+            --input: hsl(210 11% 15%);
+            --ring: hsl(195 100% 50%);
+            --radius: 0.75rem;
+            --font-sans: "Inter";
+            --font-display: "Orbitron";
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 5px hsl(195 100% 50%), 0 0 10px hsl(195 100% 50%), 0 0 15px hsl(195 100% 50%); }
+            to { box-shadow: 0 0 10px hsl(195 100% 50%), 0 0 20px hsl(195 100% 50%), 0 0 30px hsl(195 100% 50%); }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 5px hsl(84 100% 55%); }
+            50% { box-shadow: 0 0 20px hsl(84 100% 55%), 0 0 30px hsl(84 100% 55%); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .glow-border {
+            border: 1px solid transparent;
+            background: linear-gradient(hsl(210 11% 13%), hsl(210 11% 13%)) padding-box,
+                        linear-gradient(135deg, hsl(195 100% 50%), hsl(280 100% 60%)) border-box;
+        }
+
+        .neon-text {
+            text-shadow: 0 0 10px currentColor;
+        }
+
+        .gaming-gradient {
+            background: linear-gradient(135deg, hsl(195 100% 50%), hsl(280 100% 60%), hsl(84 100% 55%));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground min-h-screen">
+    <!-- @COMPONENT: Header [Navigation and branding] -->
+    <header class="sticky top-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                    <i class="fas fa-gamepad text-primary-foreground text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="font-display font-bold text-xl gaming-gradient">PUBG Names</h1>
+                    <p class="text-xs text-muted-foreground">Stylish Name Generator</p>
+                </div>
+            </div>
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="#generator" class="text-muted-foreground hover:text-primary transition-colors">Generator</a>
+                <a href="#premade" class="text-muted-foreground hover:text-primary transition-colors">Pre-made Names</a>
+                <a href="#favorites" class="text-muted-foreground hover:text-primary transition-colors">Favorites</a>
+                <button data-event="click:toggleTheme" class="p-2 rounded-lg bg-muted hover:bg-primary/10 transition-colors">
+                    <i class="fas fa-palette text-primary"></i>
+                </button>
+            </nav>
+            <button class="md:hidden p-2 rounded-lg bg-muted">
+                <i class="fas fa-bars text-foreground"></i>
+            </button>
+        </div>
+    </header>
+    <!-- @END_COMPONENT: Header -->
+
+    <main class="container mx-auto px-4 py-8 space-y-12">
+        <!-- @COMPONENT: HeroSection [Main generator interface] -->
+        <section id="generator" class="text-center space-y-8">
+            <div class="space-y-4">
+                <h1 class="font-display font-black text-4xl md:text-6xl lg:text-7xl">
+                    <span class="gaming-gradient neon-text">PUBG</span>
+                    <br>
+                    <span class="text-foreground">Name Generator</span>
+                </h1>
+                <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+                    Create stylish, unique names for PUBG with fancy symbols and Unicode characters. 
+                    Perfect for standing out in the battleground!
+                </p>
+            </div>
+
+            <div class="max-w-2xl mx-auto space-y-6">
+                <!-- @COMPONENT: NameInput [Text input with real-time generation] -->
+                <div class="glow-border rounded-lg p-1">
+                    <div class="bg-input rounded-lg p-6 space-y-4">
+                        <div class="space-y-2">
+                            <label for="nameInput" class="block text-sm font-medium text-foreground">
+                                <i class="fas fa-edit text-primary mr-2"></i>
+                                Enter Your Name
+                            </label>
+                            <input 
+                                type="text" 
+                                id="nameInput"
+                                placeholder="Type your name here..."
+                                class="w-full px-4 py-3 bg-background border border-border rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-foreground placeholder-muted-foreground"
+                                data-bind="userInput"
+                                data-event="input:generateNames"
+                            />
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <button 
+                                class="flex-1 bg-gradient-to-r from-primary to-accent hover:from-primary/80 hover:to-accent/80 text-primary-foreground px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:animate-pulse-glow"
+                                data-event="click:generateNames"
+                                data-implementation="Generate stylized versions of input text"
+                            >
+                                <i class="fas fa-magic mr-2"></i>
+                                Generate Names
+                            </button>
+                            <button 
+                                class="bg-secondary hover:bg-secondary/80 text-secondary-foreground px-6 py-3 rounded-lg font-semibold transition-colors"
+                                data-event="click:randomName"
+                                data-implementation="Generate random stylish name"
+                            >
+                                <i class="fas fa-dice mr-2"></i>
+                                Random
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- @END_COMPONENT: NameInput -->
+            </div>
+        </section>
+        <!-- @END_COMPONENT: HeroSection -->
+
+        <!-- @COMPONENT: GeneratedResults [Display generated name variations] -->
+        <section class="space-y-6" data-mock="true">
+            <div class="text-center space-y-2">
+                <h2 class="font-display font-bold text-2xl text-foreground">Generated Names</h2>
+                <p class="text-muted-foreground">Click any name to copy it instantly</p>
+            </div>
+            
+            <!-- @STATE: generatedNames:array = [] -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- @MAP: generatedNames.map(name => ( -->
+                <div class="group bg-card border border-border rounded-lg p-4 hover:border-primary/50 transition-all duration-300 cursor-pointer hover:shadow-lg hover:shadow-primary/20"
+                     data-event="click:copyToClipboard"
+                     data-implementation="Copy name to clipboard and show success animation">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs text-muted-foreground font-medium uppercase tracking-wider" data-bind="name.style">Bold Unicode</span>
+                        <button class="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded bg-primary/10 hover:bg-primary/20">
+                            <i class="fas fa-copy text-primary text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="text-center">
+                        <p class="font-mono text-xl text-foreground break-all" data-bind="name.result">𝕯𝖊𝖒𝖔 𝕹𝖆𝖒𝖊</p>
+                    </div>
+                    <div class="mt-3 flex items-center justify-center">
+                        <button class="text-xs text-muted-foreground hover:text-secondary transition-colors">
+                            <i class="fas fa-heart mr-1"></i>
+                            Add to Favorites
+                        </button>
+                    </div>
+                </div>
+                <!-- @END_MAP )) -->
+                
+                <!-- Mock data examples -->
+                <div class="group bg-card border border-border rounded-lg p-4 hover:border-primary/50 transition-all duration-300 cursor-pointer hover:shadow-lg hover:shadow-primary/20" data-mock="true">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs text-muted-foreground font-medium uppercase tracking-wider">Bold Unicode</span>
+                        <button class="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded bg-primary/10 hover:bg-primary/20">
+                            <i class="fas fa-copy text-primary text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="text-center">
+                        <p class="font-mono text-xl text-foreground break-all">𝕯𝖊𝖆𝖉 𝕶𝖎𝖑𝖑𝖊𝖗</p>
+                    </div>
+                    <div class="mt-3 flex items-center justify-center">
+                        <button class="text-xs text-muted-foreground hover:text-secondary transition-colors">
+                            <i class="fas fa-heart mr-1"></i>
+                            Add to Favorites
+                        </button>
+                    </div>
+                </div>
+
+                <div class="group bg-card border border-border rounded-lg p-4 hover:border-primary/50 transition-all duration-300 cursor-pointer hover:shadow-lg hover:shadow-primary/20" data-mock="true">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs text-muted-foreground font-medium uppercase tracking-wider">Stylized</span>
+                        <button class="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded bg-primary/10 hover:bg-primary/20">
+                            <i class="fas fa-copy text-primary text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="text-center">
+                        <p class="font-mono text-xl text-foreground break-all">꧁༒☬Dead Killer☬༒꧂</p>
+                    </div>
+                    <div class="mt-3 flex items-center justify-center">
+                        <button class="text-xs text-muted-foreground hover:text-secondary transition-colors">
+                            <i class="fas fa-heart mr-1"></i>
+                            Add to Favorites
+                        </button>
+                    </div>
+                </div>
+
+                <div class="group bg-card border border-border rounded-lg p-4 hover:border-primary/50 transition-all duration-300 cursor-pointer hover:shadow-lg hover:shadow-primary/20" data-mock="true">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs text-muted-foreground font-medium uppercase tracking-wider">Symbols</span>
+                        <button class="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded bg-primary/10 hover:bg-primary/20">
+                            <i class="fas fa-copy text-primary text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="text-center">
+                        <p class="font-mono text-xl text-foreground break-all">★彡[Dead Killer]彡★</p>
+                    </div>
+                    <div class="mt-3 flex items-center justify-center">
+                        <button class="text-xs text-muted-foreground hover:text-secondary transition-colors">
+                            <i class="fas fa-heart mr-1"></i>
+                            Add to Favorites
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: GeneratedResults -->
+
+        <!-- @COMPONENT: PreMadeNames [Gallery of ready-to-use names] -->
+        <section id="premade" class="space-y-8">
+            <div class="text-center space-y-4">
+                <h2 class="font-display font-bold text-3xl text-foreground">Pre-Made Stylish Names</h2>
+                <p class="text-muted-foreground max-w-2xl mx-auto">
+                    Choose from our collection of 100+ ready-to-use PUBG names with symbols and special characters
+                </p>
+            </div>
+
+            <!-- @COMPONENT: CategoryFilter [Filter names by category] -->
+            <div class="flex flex-wrap justify-center gap-3">
+                <button class="px-4 py-2 bg-primary text-primary-foreground rounded-lg font-medium transition-colors" data-category="all">
+                    All Names
+                </button>
+                <button class="px-4 py-2 bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground rounded-lg font-medium transition-colors" data-category="cool">
+                    Cool
+                </button>
+                <button class="px-4 py-2 bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground rounded-lg font-medium transition-colors" data-category="aggressive">
+                    Aggressive
+                </button>
+                <button class="px-4 py-2 bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground rounded-lg font-medium transition-colors" data-category="symbols">
+                    Symbols
+                </button>
+                <button class="px-4 py-2 bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground rounded-lg font-medium transition-colors" data-category="royal">
+                    Royal
+                </button>
+                <button class="px-4 py-2 bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground rounded-lg font-medium transition-colors" data-category="legendary">
+                    Legendary
+                </button>
+            </div>
+            <!-- @END_COMPONENT: CategoryFilter -->
+
+            <!-- @COMPONENT: SearchBar [Search through pre-made names] -->
+            <div class="max-w-md mx-auto">
+                <div class="relative">
+                    <input 
+                        type="text" 
+                        placeholder="Search names..."
+                        class="w-full pl-10 pr-4 py-3 bg-input border border-border rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-foreground placeholder-muted-foreground"
+                        data-event="input:searchNames"
+                        data-implementation="Filter pre-made names based on search query"
+                    />
+                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground"></i>
+                </div>
+            </div>
+            <!-- @END_COMPONENT: SearchBar -->
+
+            <!-- @COMPONENT: NameGallery [Grid of pre-made names] -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <!-- @MAP: premadeNames.map(name => ( -->
+                <!-- Real data from the provided source -->
+                <div class="group bg-card border border-border rounded-lg p-4 hover:border-secondary/50 transition-all duration-300 cursor-pointer hover:shadow-lg hover:shadow-secondary/10"
+                     data-event="click:copyToClipboard"
+                     data-implementation="Copy name to clipboard with success feedback">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="inline-block px-2 py-1 bg-secondary/10 text-secondary text-xs rounded-full font-medium" data-bind="name.category">Cool</span>
+                        <button class="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded bg-secondary/10 hover:bg-secondary/20">
+                            <i class="fas fa-copy text-secondary text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="text-center mb-3">
+                        <p class="font-mono text-lg text-foreground break-all leading-relaxed" data-bind="name.text">★彡[ᴅᴇᴀᴅ ᴋɪʟʟᴇʀ]彡★</p>
+                    </div>
+                    <div class="flex items-center justify-between text-xs">
+                        <button class="text-muted-foreground hover:text-secondary transition-colors">
+                            <i class="fas fa-heart mr-1"></i>
+                            Favorite
+                        </button>
+                        <button class="text-muted-foreground hover:text-accent transition-colors">
+                            <i class="fas fa-share-alt mr-1"></i>
+                            Share
+                        </button>
+                    </div>
+                </div>
+                <!-- @END_MAP )) -->
+
+                <!-- Actual names from the source data -->
+                <div class="group bg-card border border-border rounded-lg p-4 hover:border-secondary/50 transition-all duration-300 cursor-pointer hover:shadow-lg hover:shadow-secondary/10">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="inline-block px-2 py-1 bg-secondary/10 text-secondary text-xs rounded-full font-medium">Cool</span>
+                        <button class="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded bg-secondary/10 hover:bg-secondary/20">
+                            <i class="fas fa-copy text-secondary text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="text-center mb-3">
+                        <p class="font-mono text-lg text-foreground break-all leading-relaxed">★彡[ᴅᴇᴀᴅ ᴋɪʟʟᴇʀ]彡★</p>
+                    </div>
+                    <div class="flex items-center justify-between text-xs">
+                        <button class="text-muted-foreground hover:text-secondary transition-colors">
+                            <i class="fas fa-heart mr-1"></i>
+                            Favorite
+                        </button>
+                        <button class="text-muted-foreground hover:text-accent transition-colors">
+                            <i class="fas fa-share-alt mr-1"></i>
+                            Share
+                        </button>
+                    </div>
+                </div>
+
+                <div class="group bg-card border border-border rounded-lg p-4 hover:border-secondary/50 transition-all duration-300 cursor-pointer hover:shadow-lg hover:shadow-secondary/10">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="inline-block px-2 py-1 bg-accent/10 text-accent text-xs rounded-full font-medium">Royal</span>
+                        <button class="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded bg-secondary/10 hover:bg-secondary/20">
+                            <i class="fas fa-copy text-secondary text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="text-center mb-3">
+                        <p class="font-mono text-lg text-foreground break-all leading-relaxed">꧁༺₦Ї₦ℑ₳༻꧂</p>
+                    </div>
+                    <div class="flex items-center justify-between text-xs">
+                        <button class="text-muted-foreground hover:text-secondary transition-colors">
+                            <i class="fas fa-heart mr-1"></i>
+                            Favorite
+                        </button>
+                        <button class="text-muted-foreground hover:text-accent transition-colors">
+                            <i class="fas fa-share-alt mr-1"></i>
+                            Share
+                        </button>
+                    </div>
+                </div>
+
+                <div class="group bg-card border border-border rounded-lg p-4 hover:border-secondary/50 transition-all duration-300 cursor-pointer hover:shadow-lg hover:shadow-secondary/10">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="inline-block px-2 py-1 bg-destructive/10 text-destructive text-xs rounded-full font-medium">Aggressive</span>
+                        <button class="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded bg-secondary/10 hover:bg-secondary/20">
+                            <i class="fas fa-copy text-secondary text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="text-center mb-3">
+                        <p class="font-mono text-lg text-foreground break-all leading-relaxed">꧁༒☬Bad☬Boy☬༒꧂</p>
+                    </div>
+                    <div class="flex items-center justify-between text-xs">
+                        <button class="text-muted-foreground hover:text-secondary transition-colors">
+                            <i class="fas fa-heart mr-1"></i>
+                            Favorite
+                        </button>
+                        <button class="text-muted-foreground hover:text-accent transition-colors">
+                            <i class="fas fa-share-alt mr-1"></i>
+                            Share
+                        </button>
+                    </div>
+                </div>
+
+                <div class="group bg-card border border-border rounded-lg p-4 hover:border-secondary/50 transition-all duration-300 cursor-pointer hover:shadow-lg hover:shadow-secondary/10">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="inline-block px-2 py-1 bg-destructive/10 text-destructive text-xs rounded-full font-medium">Aggressive</span>
+                        <button class="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded bg-secondary/10 hover:bg-secondary/20">
+                            <i class="fas fa-copy text-secondary text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="text-center mb-3">
+                        <p class="font-mono text-lg text-foreground break-all leading-relaxed">꧁༒☬M̷O̷N̷S̷T̷E̷R̷☬༒꧂</p>
+                    </div>
+                    <div class="flex items-center justify-between text-xs">
+                        <button class="text-muted-foreground hover:text-secondary transition-colors">
+                            <i class="fas fa-heart mr-1"></i>
+                            Favorite
+                        </button>
+                        <button class="text-muted-foreground hover:text-accent transition-colors">
+                            <i class="fas fa-share-alt mr-1"></i>
+                            Share
+                        </button>
+                    </div>
+                </div>
+
+                <div class="group bg-card border border-border rounded-lg p-4 hover:border-secondary/50 transition-all duration-300 cursor-pointer hover:shadow-lg hover:shadow-secondary/10">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="inline-block px-2 py-1 bg-accent/10 text-accent text-xs rounded-full font-medium">Royal</span>
+                        <button class="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded bg-secondary/10 hover:bg-secondary/20">
+                            <i class="fas fa-copy text-secondary text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="text-center mb-3">
+                        <p class="font-mono text-lg text-foreground break-all leading-relaxed">꧁༒♛King ♛༒꧂</p>
+                    </div>
+                    <div class="flex items-center justify-between text-xs">
+                        <button class="text-muted-foreground hover:text-secondary transition-colors">
+                            <i class="fas fa-heart mr-1"></i>
+                            Favorite
+                        </button>
+                        <button class="text-muted-foreground hover:text-accent transition-colors">
+                            <i class="fas fa-share-alt mr-1"></i>
+                            Share
+                        </button>
+                    </div>
+                </div>
+
+                <div class="group bg-card border border-border rounded-lg p-4 hover:border-secondary/50 transition-all duration-300 cursor-pointer hover:shadow-lg hover:shadow-secondary/10">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="inline-block px-2 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium">Symbols</span>
+                        <button class="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded bg-secondary/10 hover:bg-secondary/20">
+                            <i class="fas fa-copy text-secondary text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="text-center mb-3">
+                        <p class="font-mono text-lg text-foreground break-all leading-relaxed">◥ᖫℭяα𝕫Ÿ༒₭ɨllǝ℞ᖭ◤</p>
+                    </div>
+                    <div class="flex items-center justify-between text-xs">
+                        <button class="text-muted-foreground hover:text-secondary transition-colors">
+                            <i class="fas fa-heart mr-1"></i>
+                            Favorite
+                        </button>
+                        <button class="text-muted-foreground hover:text-accent transition-colors">
+                            <i class="fas fa-share-alt mr-1"></i>
+                            Share
+                        </button>
+                    </div>
+                </div>
+
+                <div class="group bg-card border border-border rounded-lg p-4 hover:border-secondary/50 transition-all duration-300 cursor-pointer hover:shadow-lg hover:shadow-secondary/10">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="inline-block px-2 py-1 bg-secondary/10 text-secondary text-xs rounded-full font-medium">Cool</span>
+                        <button class="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded bg-secondary/10 hover:bg-secondary/20">
+                            <i class="fas fa-copy text-secondary text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="text-center mb-3">
+                        <p class="font-mono text-lg text-foreground break-all leading-relaxed">J҉O҉K҉E҉R҉</p>
+                    </div>
+                    <div class="flex items-center justify-between text-xs">
+                        <button class="text-muted-foreground hover:text-secondary transition-colors">
+                            <i class="fas fa-heart mr-1"></i>
+                            Favorite
+                        </button>
+                        <button class="text-muted-foreground hover:text-accent transition-colors">
+                            <i class="fas fa-share-alt mr-1"></i>
+                            Share
+                        </button>
+                    </div>
+                </div>
+
+                <div class="group bg-card border border-border rounded-lg p-4 hover:border-secondary/50 transition-all duration-300 cursor-pointer hover:shadow-lg hover:shadow-secondary/10">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="inline-block px-2 py-1 bg-muted/20 text-muted-foreground text-xs rounded-full font-medium">Legendary</span>
+                        <button class="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded bg-secondary/10 hover:bg-secondary/20">
+                            <i class="fas fa-copy text-secondary text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="text-center mb-3">
+                        <p class="font-mono text-lg text-foreground break-all leading-relaxed">SOUL々MORTAL</p>
+                    </div>
+                    <div class="flex items-center justify-between text-xs">
+                        <button class="text-muted-foreground hover:text-secondary transition-colors">
+                            <i class="fas fa-heart mr-1"></i>
+                            Favorite
+                        </button>
+                        <button class="text-muted-foreground hover:text-accent transition-colors">
+                            <i class="fas fa-share-alt mr-1"></i>
+                            Share
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Load more button -->
+                <div class="col-span-full flex justify-center pt-6">
+                    <button class="px-8 py-3 bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground rounded-lg font-semibold transition-all duration-300"
+                            data-event="click:loadMore"
+                            data-implementation="Load more pre-made names with pagination">
+                        <i class="fas fa-plus mr-2"></i>
+                        Load More Names
+                    </button>
+                </div>
+            </div>
+            <!-- @END_COMPONENT: NameGallery -->
+        </section>
+        <!-- @END_COMPONENT: PreMadeNames -->
+
+        <!-- @COMPONENT: Features [Additional features section] -->
+        <section class="space-y-8">
+            <div class="text-center space-y-4">
+                <h2 class="font-display font-bold text-3xl text-foreground">Powerful Features</h2>
+                <p class="text-muted-foreground max-w-2xl mx-auto">
+                    Everything you need to create and manage the perfect PUBG gaming identity
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-card border border-border rounded-lg p-6 hover:border-primary/50 transition-all duration-300 group">
+                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                        <i class="fas fa-copy text-primary text-xl"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-lg mb-2 text-foreground">One-Click Copy</h3>
+                    <p class="text-muted-foreground">Copy any generated or pre-made name to your clipboard instantly with visual feedback.</p>
+                </div>
+
+                <div class="bg-card border border-border rounded-lg p-6 hover:border-secondary/50 transition-all duration-300 group">
+                    <div class="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-secondary/20 transition-colors">
+                        <i class="fas fa-heart text-secondary text-xl"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-lg mb-2 text-foreground">Favorites System</h3>
+                    <p class="text-muted-foreground">Save your favorite names and access them quickly whenever you need them.</p>
+                </div>
+
+                <div class="bg-card border border-border rounded-lg p-6 hover:border-accent/50 transition-all duration-300 group">
+                    <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
+                        <i class="fas fa-history text-accent text-xl"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-lg mb-2 text-foreground">Name History</h3>
+                    <p class="text-muted-foreground">Keep track of all your generated names and revisit previous creations.</p>
+                </div>
+
+                <div class="bg-card border border-border rounded-lg p-6 hover:border-primary/50 transition-all duration-300 group">
+                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                        <i class="fas fa-mobile-alt text-primary text-xl"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-lg mb-2 text-foreground">Mobile Optimized</h3>
+                    <p class="text-muted-foreground">Perfect experience on all devices with touch-friendly controls and responsive design.</p>
+                </div>
+
+                <div class="bg-card border border-border rounded-lg p-6 hover:border-secondary/50 transition-all duration-300 group">
+                    <div class="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-secondary/20 transition-colors">
+                        <i class="fas fa-search text-secondary text-xl"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-lg mb-2 text-foreground">Smart Search</h3>
+                    <p class="text-muted-foreground">Find the perfect name quickly with our intelligent search and filtering system.</p>
+                </div>
+
+                <div class="bg-card border border-border rounded-lg p-6 hover:border-accent/50 transition-all duration-300 group">
+                    <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
+                        <i class="fas fa-dice text-accent text-xl"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-lg mb-2 text-foreground">Random Generator</h3>
+                    <p class="text-muted-foreground">Get instant inspiration with our random name generator featuring various styles.</p>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: Features -->
+
+        <!-- @COMPONENT: Instructions [How to use names in PUBG] -->
+        <section class="bg-card border border-border rounded-xl p-8 space-y-6">
+            <div class="text-center space-y-2">
+                <h2 class="font-display font-bold text-2xl text-foreground">How to Use Your New Name</h2>
+                <p class="text-muted-foreground">Step-by-step guide to change your PUBG name</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center space-y-3">
+                    <div class="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center mx-auto font-bold text-lg">1</div>
+                    <h4 class="font-semibold text-foreground">Generate Name</h4>
+                    <p class="text-sm text-muted-foreground">Type your desired name and generate stylish variations</p>
+                </div>
+                <div class="text-center space-y-3">
+                    <div class="w-12 h-12 bg-secondary text-secondary-foreground rounded-full flex items-center justify-center mx-auto font-bold text-lg">2</div>
+                    <h4 class="font-semibold text-foreground">Copy Name</h4>
+                    <p class="text-sm text-muted-foreground">Click on your favorite name to copy it to clipboard</p>
+                </div>
+                <div class="text-center space-y-3">
+                    <div class="w-12 h-12 bg-accent text-accent-foreground rounded-full flex items-center justify-center mx-auto font-bold text-lg">3</div>
+                    <h4 class="font-semibold text-foreground">Open PUBG</h4>
+                    <p class="text-sm text-muted-foreground">Go to PUBG settings and find the name change option</p>
+                </div>
+                <div class="text-center space-y-3">
+                    <div class="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center mx-auto font-bold text-lg">4</div>
+                    <h4 class="font-semibold text-foreground">Paste & Save</h4>
+                    <p class="text-sm text-muted-foreground">Paste your new name and save to update your profile</p>
+                </div>
+            </div>
+
+            <div class="bg-muted/20 border border-border/50 rounded-lg p-6 space-y-4">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-info-circle text-primary text-xl"></i>
+                    <h4 class="font-semibold text-foreground">Important Notes</h4>
+                </div>
+                <ul class="space-y-2 text-sm text-muted-foreground">
+                    <li class="flex items-start space-x-2">
+                        <i class="fas fa-check text-secondary mt-0.5 text-xs"></i>
+                        <span>Some special characters might not display correctly on all devices</span>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                        <i class="fas fa-check text-secondary mt-0.5 text-xs"></i>
+                        <span>Name changes in PUBG may require in-game currency or have cooldown periods</span>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                        <i class="fas fa-check text-secondary mt-0.5 text-xs"></i>
+                        <span>Test your name in a text editor first to ensure all characters display properly</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: Instructions -->
+    </main>
+
+    <!-- @COMPONENT: Footer [Site footer with links] -->
+    <footer class="bg-card border-t border-border mt-16">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                            <i class="fas fa-gamepad text-primary-foreground text-sm"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-lg gaming-gradient">PUBG Names</h3>
+                    </div>
+                    <p class="text-sm text-muted-foreground">
+                        Create stunning, unique names for PUBG with our advanced Unicode generator and extensive pre-made collection.
+                    </p>
+                </div>
+                
+                <div class="space-y-4">
+                    <h4 class="font-semibold text-foreground">Features</h4>
+                    <ul class="space-y-2 text-sm text-muted-foreground">
+                        <li><a href="#generator" class="hover:text-primary transition-colors">Name Generator</a></li>
+                        <li><a href="#premade" class="hover:text-primary transition-colors">Pre-made Names</a></li>
+                        <li><a href="#favorites" class="hover:text-primary transition-colors">Favorites</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Name History</a></li>
+                    </ul>
+                </div>
+                
+                <div class="space-y-4">
+                    <h4 class="font-semibold text-foreground">Categories</h4>
+                    <ul class="space-y-2 text-sm text-muted-foreground">
+                        <li><a href="#" class="hover:text-primary transition-colors">Cool Names</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Aggressive Names</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Royal Names</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Symbol Names</a></li>
+                    </ul>
+                </div>
+                
+                <div class="space-y-4">
+                    <h4 class="font-semibold text-foreground">Connect</h4>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-10 h-10 bg-muted hover:bg-primary/20 rounded-lg flex items-center justify-center transition-colors group">
+                            <i class="fab fa-twitter text-muted-foreground group-hover:text-primary text-sm"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-muted hover:bg-primary/20 rounded-lg flex items-center justify-center transition-colors group">
+                            <i class="fab fa-discord text-muted-foreground group-hover:text-primary text-sm"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-muted hover:bg-primary/20 rounded-lg flex items-center justify-center transition-colors group">
+                            <i class="fab fa-youtube text-muted-foreground group-hover:text-primary text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-border pt-8 mt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm text-muted-foreground">
+                    © 2025 PUBG Names Generator. All rights reserved.
+                </p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-sm text-muted-foreground hover:text-primary transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-sm text-muted-foreground hover:text-primary transition-colors">Terms of Service</a>
+                    <a href="#" class="text-sm text-muted-foreground hover:text-primary transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- @END_COMPONENT: Footer -->
+
+    <!-- @COMPONENT: CopySuccessToast [Success feedback for copy operations] -->
+    <div id="copyToast" class="fixed bottom-6 right-6 bg-secondary text-secondary-foreground px-6 py-3 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+        <div class="flex items-center space-x-2">
+            <i class="fas fa-check text-sm"></i>
+            <span class="font-medium">Copied to clipboard!</span>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: CopySuccessToast -->
+
+    <script>
+        (function() {
+            // TODO: Implement business logic, API calls, and state management
+            
+            // Mock copy to clipboard functionality
+            document.addEventListener('click', function(e) {
+                const copyButton = e.target.closest('[data-event*="copyToClipboard"]');
+                if (copyButton) {
+                    e.preventDefault();
+                    
+                    // Find the name text to copy
+                    const nameElement = copyButton.querySelector('.font-mono') || copyButton.closest('.group').querySelector('.font-mono');
+                    if (nameElement) {
+                        const textToCopy = nameElement.textContent;
+                        
+                        // Mock clipboard API
+                        navigator.clipboard.writeText(textToCopy).then(() => {
+                            showCopyToast();
+                        }).catch(() => {
+                            // Fallback for older browsers
+                            const textarea = document.createElement('textarea');
+                            textarea.value = textToCopy;
+                            document.body.appendChild(textarea);
+                            textarea.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(textarea);
+                            showCopyToast();
+                        });
+                    }
+                }
+            });
+
+            function showCopyToast() {
+                const toast = document.getElementById('copyToast');
+                toast.classList.remove('translate-y-20', 'opacity-0');
+                toast.classList.add('translate-y-0', 'opacity-100');
+                
+                setTimeout(() => {
+                    toast.classList.add('translate-y-20', 'opacity-0');
+                    toast.classList.remove('translate-y-0', 'opacity-100');
+                }, 2000);
+            }
+
+            // Mock search functionality
+            const searchInput = document.querySelector('[data-event*="searchNames"]');
+            if (searchInput) {
+                searchInput.addEventListener('input', function(e) {
+                    const searchTerm = e.target.value.toLowerCase();
+                    // TODO: Implement actual search filtering logic
+                    console.log('Searching for:', searchTerm);
+                });
+            }
+
+            // Mock category filtering
+            document.addEventListener('click', function(e) {
+                const categoryButton = e.target.closest('[data-category]');
+                if (categoryButton) {
+                    e.preventDefault();
+                    
+                    // Update active category button
+                    document.querySelectorAll('[data-category]').forEach(btn => {
+                        btn.classList.remove('bg-primary', 'text-primary-foreground');
+                        btn.classList.add('bg-muted', 'text-muted-foreground', 'hover:bg-primary', 'hover:text-primary-foreground');
+                    });
+                    
+                    categoryButton.classList.remove('bg-muted', 'text-muted-foreground', 'hover:bg-primary', 'hover:text-primary-foreground');
+                    categoryButton.classList.add('bg-primary', 'text-primary-foreground');
+                    
+                    const category = categoryButton.getAttribute('data-category');
+                    // TODO: Implement actual category filtering logic
+                    console.log('Filtering by category:', category);
+                }
+            });
+
+            // Mock name generation
+            const generateButton = document.querySelector('[data-event*="generateNames"]');
+            const nameInput = document.getElementById('nameInput');
+            
+            if (generateButton && nameInput) {
+                generateButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const inputValue = nameInput.value.trim();
+                    if (inputValue) {
+                        // TODO: Implement actual name generation logic with Unicode transformations
+                        console.log('Generating names for:', inputValue);
+                    }
+                });
+            }
+
+            // Mock random name generation
+            const randomButton = document.querySelector('[data-event*="randomName"]');
+            if (randomButton) {
+                randomButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // TODO: Implement random name selection logic
+                    console.log('Generating random name');
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
